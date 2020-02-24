@@ -102,7 +102,7 @@ namespace Memoization {
         for(int i=0; i<2; i++) {
             delete []memo[i];
         }
-        delete memo;
+        delete []memo;
 
         return aliceWon;
     }
@@ -155,7 +155,7 @@ namespace DP {
         for(int i=0; i<2; i++) {
             delete []table[i];
         }
-        delete table;
+        delete []table;
         return ans;
     }
 }
