@@ -130,19 +130,22 @@ namespace DP {
         table[0][2] = 0; // Bob wins and Alice loses
         table[1][2] = 1; // Alice wins
         
-        for (int i=3; i<N; i++) {
+        for (int i=3; i<=N; i++) {
             for (int j=1; j*j<=i; j++) {
                 if (i%j == 0) {
-                    if (table[0][i-j] == 1) {
+                    if (table[0][i-j] == 0) {
                         // If opponent is winning on this move
                         // Alice loses the game
                         table[1][i] = 0;
                         table[0][i] = 1;
-                    }else if (table[0][i-j] == 0) {
+                    }else if (table[0][i-j] == 1) {
                         // If Opponent is loosing
                         table[1][i] = 1;
                         table[0][i] = 0;
                     }
+                }
+                if (table[1][i] == 1) {
+                    break;
                 } 
             }
         }
