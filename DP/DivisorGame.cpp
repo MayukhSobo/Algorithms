@@ -110,7 +110,51 @@ namespace Memoization {
 
 // Tabular DP (Bottom Up DP)
 namespace DP {
+    bool divisorGame(int N) {
+        // Create the table
+        int **table = new int*[2];
+        for(int i=0; i<2; i++) {
+            table[i] = new int[N+1];
+        }
+        
+        // row 0 is for Bob and row 1 is for Alice
+        bool turn = true; // Indicate the turn of Alice
+        // There is no concept of N being 0, so the table values would be -1
+        table[0][0] = table[1][0] = -1;
 
+        // Whoever gets 1, loose the game because there is nothing in (0, 1)
+        table[0][1] = 1; // Bob looses and alice wons
+        table[1][1] = 0; // Alice loses
+        
+        // Whoever gets 2, wins the game
+        table[0][2] = 0; // Bob wins and Alice loses
+        table[1][2] = 1; // Alice wins
+        
+        for (int i=3; i<N; i++) {
+            for (int j=1; j*j<=i; j++) {
+                if (i%j == 0) {
+                    if (table[0][i-j] == 1) {
+                        // If opponent is winning on this move
+                        // Alice loses the game
+                        table[1][i] = 0;
+                        table[0][i] = 1;
+                    }else if (table[0][i-j] == 0) {
+                        // If Opponent is loosing
+                        table[1][i] = 1;
+                        table[0][i] = 0;
+                    }
+                } 
+            }
+        }
+
+        bool ans = (bool)table[1][N];
+        // Free the memory
+        for(int i=0; i<2; i++) {
+            delete []table[i];
+        }
+        delete table;
+        return ans;
+    }
 }
 
 
@@ -128,6 +172,14 @@ int main() {
     }else{
         cout << "Memo: false" << endl;
     }
+    // ------------------------- //
+    bool ansDP = DP::divisorGame(n);
+    if (ansDP) {
+        cout << "DP: true" << endl;
+    }else{
+        cout << "DP: false" << endl;
+    }
+    // ------------------------- //
     
     bool ansBrute = Brute::divisorGame(n);
     if (ansBrute) {
@@ -135,5 +187,6 @@ int main() {
     }else{
         cout << "Brute: false" << endl;
     }
+
     return 0;
 }
