@@ -117,6 +117,40 @@ namespace Memoization {
     }
 }
 
+namespace DP {
+    int minCostToPaint(int cost[][3], int N) {
+        // Creating the cost table
+        int **table = new int*[3];
+        for(int i=0; i<3; i++) {
+            table[i] = new int[N];
+        }
+        // ROWs for color and COLUMNs for the current house
+
+        table[0][0] = cost[0][0]; // 0th row for the red color 
+        table[1][0] = cost[0][1]; // 1st row for the blue color
+        table[2][0] = cost[0][2]; // 2nd row for the green color
+
+        for(int i=1; i<N; i++) {
+            // Choosing the current hourse color Red
+            table[0][i] = min(table[1][i-1], table[2][i-1]) + cost[i][0];
+
+            // Choosing the current house color Blue
+            table[1][i] = min(table[0][i-1], table[2][i-1]) + cost[i][1];
+
+            // Choosing the current house color Green
+            table[2][i] = min(table[0][i-1], table[1][i-1]) + cost[i][2];
+        }
+
+        int ans = min(table[0][N-1], min(table[1][N-1], table[2][N-1]));
+
+        for(int i = 0; i < 3; i++) {
+            delete []table[i];
+        }
+        delete []table;
+
+        return ans;
+    }
+}
 
 int main() {
     freopen("in", "r", stdin);
@@ -130,6 +164,9 @@ int main() {
             cin >> costs[i][j];
         }
     }
+    int minCostDP = DP::minCostToPaint(costs, N);
+    cout << "DP: " << minCostDP << endl;
+
     int minCostMemo = Memoization::minCostToPaint(costs, N);
     cout << "Memo: " << minCostMemo << endl;
 
