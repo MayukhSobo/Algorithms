@@ -19,6 +19,7 @@ namespace Brute {
             p2 = max(prices[0] - boughtPrice, maxProfit(prices+1, false, -1, N-1));
         }
 
+        // Don't buy or sell
         p3 = maxProfit(prices+1, bought, boughtPrice, N-1);
 
         return max(p1, max(p2, p3));
@@ -31,7 +32,7 @@ namespace Brute {
 int main() {
     freopen("in", "r", stdin);
     freopen("out", "w", stdout);
-    
+
     int N;
     cin >> N;
     int *prices = new int[N];
