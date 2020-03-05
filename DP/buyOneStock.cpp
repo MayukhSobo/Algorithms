@@ -3,7 +3,7 @@ using namespace std;
 
 namespace Brute {
     int maxProfit(int *prices, bool bought, int boughtPrice, int N) {
-        if (N <= 1) {
+        if (N <= 0) {
             return 0;
         }
         int p1 = INT_MIN;
@@ -13,10 +13,10 @@ namespace Brute {
         // We can buy if not purchased already
         if (not bought) {
             // But it
-            p1 = max(0, maxProfit(prices+1, true, prices[0], N-1));
+            p1 = maxProfit(prices+1, true, prices[0], N-1);
         }else {
             // Sell it
-            p2 = max(prices[0] - boughtPrice, maxProfit(prices+1, false, -1, N-1));
+            p2 = prices[0] - boughtPrice;
         }
 
         // Don't buy or sell
@@ -32,24 +32,28 @@ namespace Brute {
 namespace Memoization {
 
     int maxProfit(int *prices, bool bought, int boughtPrice, int N, int **memo) {
-        if (N <= 1) {
+        if (N <= 0) {
             return 0;
         }
+
         if (memo[(int)bought][N] != -1) {
             return memo[(int)bought][N];
         }
+
         int p1 = INT_MIN;
         int p2 = INT_MIN;
         int p3 = INT_MIN;
-        if (bought) {
-            // If purchased previously, then can sell
-            p1 = max(prices[0]- boughtPrice, maxProfit(prices+1, false, -1, N-1, memo));
-        }else{
-            // If not purchased, then can buy
-            p2 = max(0, maxProfit(prices+1, true, prices[0], N-1, memo));
+
+        // We can buy if not purchased already
+        if (not bought) {
+            // But it
+            p1 = maxProfit(prices+1, true, prices[0], N-1, memo);
+        }else {
+            // Sell it
+            p2 = prices[0] - boughtPrice;
         }
 
-        // Can always retain
+        // Don't buy or sell
         p3 = maxProfit(prices+1, bought, boughtPrice, N-1, memo);
 
         // Store and return
@@ -67,6 +71,13 @@ namespace Memoization {
             }
         }
         int ans = maxProfit(prices, false, -1, N, memo);
+        for(int i=0; i < 2; i++) {
+            for(int j=0; j <= N; j++) {
+                cerr << memo[i][j] << " ";
+            }
+            cerr << endl;
+        }
+
         for(int i=0; i<2; i++) {
             delete[] memo[i];
         }
