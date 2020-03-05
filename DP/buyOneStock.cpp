@@ -1,103 +1,97 @@
 #include "bits/stdc++.h"
+
 using namespace std;
 
 namespace Brute {
-    int maxProfit(int *prices, bool bought, int boughtPrice, int N) {
-        if (N <= 0) {
-            return 0;
-        }
-        int p1 = INT_MIN;
-        int p2 = INT_MIN;
-        int p3 = INT_MIN;
+    int maxProfit(int prices[], int buyIndex, int curIndex, int N) {
+      if (N <= 0) {
+          return 0;
+      }
+      int p1 = INT_MIN;
+      int p2 = INT_MIN;
+      int p3 = INT_MIN;
 
-        // We can buy if not purchased already
-        if (not bought) {
-            // But it
-            p1 = maxProfit(prices+1, true, prices[0], N-1);
-        }else {
-            // Sell it
-            p2 = prices[0] - boughtPrice;
-        }
 
-        // Don't buy or sell
-        p3 = maxProfit(prices+1, bought, boughtPrice, N-1);
+      if (buyIndex == -1) {
+        // Can buy now
+        p1 = maxProfit(prices, curIndex, curIndex+1, N-1);
+      }else{
+        // Can sell now
+        p2 = prices[curIndex] - prices[buyIndex];
+      }
 
-        return max(p1, max(p2, p3));
-    }
-    int maxProfit(int *prices, int N) {
-        return maxProfit(prices, false, -1, N);
-    }
+      // Ignore both buy ans sell
+      p3 = maxProfit(prices, buyIndex, curIndex+1, N-1);
+
+      return max(p1, max(p2, p3));
+  }
+
+  int maxProfit(int prices[], int N) {
+      return maxProfit(prices, -1, 0, N);
+  }
 }
 
 namespace Memoization {
+  int maxProfit(int prices[], int buyIndex, int curIndex, int N, map<pair<int, int>, int> &memo) {
+      if (N <= 0) {
+          return 0;
+      }
 
-    int maxProfit(int *prices, bool bought, int boughtPrice, int N, int **memo) {
-        if (N <= 0) {
-            return 0;
+      if (buyIndex != -1){
+        auto it = memo.find(make_pair(buyIndex, curIndex));
+        if (it != memo.end()) {
+            return it->second;
         }
+      }
+ 
+      int p1 = INT_MIN;
+      int p2 = INT_MIN;
+      int p3 = INT_MIN;
 
-        if (memo[(int)bought][N] != -1) {
-            return memo[(int)bought][N];
-        }
 
-        int p1 = INT_MIN;
-        int p2 = INT_MIN;
-        int p3 = INT_MIN;
+      if (buyIndex == -1) {
+        // Can buy now
+        p1 = maxProfit(prices, curIndex, curIndex+1, N-1, memo);
+      }else{
+        // Can sell now
+        p2 = prices[curIndex] - prices[buyIndex];
+      }
 
-        // We can buy if not purchased already
-        if (not bought) {
-            // But it
-            p1 = maxProfit(prices+1, true, prices[0], N-1, memo);
-        }else {
-            // Sell it
-            p2 = prices[0] - boughtPrice;
-        }
+      // Ignore both buy ans sell
+      p3 = maxProfit(prices, buyIndex, curIndex+1, N-1, memo);
 
-        // Don't buy or sell
-        p3 = maxProfit(prices+1, bought, boughtPrice, N-1, memo);
+      return memo[make_pair(buyIndex, curIndex)] = max(p1, max(p2, p3));
+      // int ans = max(p1, max(p2, p3));
+      // if (buyIndex != -1)
+      // memo[buyIndex] = ans;
+      // return ans;
+  }
 
-        // Store and return
-        int ans = max(p1, max(p2, p3));
-        memo[(int)bought][N] = ans;
-        return ans;
-    }
-
-    int maxProfit(int *prices, int N) {
-        int **memo = new int*[2];
-        for(int i = 0; i < 2; i++) {
-            memo[i] = new int[N+1];
-            for(int j = 0; j <= N; j++) {
-                memo[i][j] = -1;
-            }
-        }
-        int ans = maxProfit(prices, false, -1, N, memo);
-        for(int i=0; i < 2; i++) {
-            for(int j=0; j <= N; j++) {
-                cerr << memo[i][j] << " ";
-            }
-            cerr << endl;
-        }
-
-        for(int i=0; i<2; i++) {
-            delete[] memo[i];
-        }
-        delete []memo;
-        return ans;
-    }
+  int maxProfit(int prices[], int N) {
+      // int *memo = new int[N+1];
+      // for(int i=0; i<=N; i++) {
+      //   memo[i] = -1;
+      // }
+      map<pair<int, int>, int> memo;
+      int ans = maxProfit(prices, -1, 0, N, memo);
+      // delete[] memo;
+      return ans;
+  }
 }
 
 int main() {
-    freopen("in", "r", stdin);
-    freopen("out", "w", stdout);
+  freopen("in", "r", stdin);
+  freopen("out", "w", stdout);
 
-    int N;
-    cin >> N;
-    int *prices = new int[N];
-    for(int i = 0; i < N; i++) {
-        cin >> prices[i];
-    }
-    cout << "Memo: " << Memoization::maxProfit(prices, N) << endl;
-    cout << "Brute: " << Brute::maxProfit(prices, N) << endl;
-    delete []prices;
-    return 0;
+  int N;
+  cin >> N;
+  int prices[N];
+  for(int i=0; i<N; i++) {
+      cin >> prices[i];
+  }
+  
+  cout << "Memoization: " << Memoization::maxProfit(prices, N) << endl;
+  cout << "Brute: " << Brute::maxProfit(prices, N) << endl;
+
+  return 0;
 }
