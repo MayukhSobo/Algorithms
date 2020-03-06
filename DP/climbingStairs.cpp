@@ -61,7 +61,6 @@ int main() {
         cin >> cost[i];
     }
     cout << "DP: " << DP::minCostClimbingStairs(cost, N) << endl;
-    
     cout << "Memo: " << Memoization::minCostClimbingStairs(cost, N) << endl;
     return 0;
 }
