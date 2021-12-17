@@ -32,7 +32,7 @@ DS and Algorithms of LeetCoder
 - [Walmart Questions](./company-tags/walmart-labs-questions.md)
 - [Nutanix Questions](./company-tags/nutanix-questions.md)
 
-## Polular Sheets
+## Popular Sheets
 
 - [Striver SDE Sheet](#)
 - [Love Babbar Sheet](#)
