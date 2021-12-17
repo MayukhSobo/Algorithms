@@ -1,4 +1,4 @@
-# Fb Leetcode Questions
+# Meta Leetcode Questions
 
 |Id|Name|Difficulty|Topic Tags|
 |--|----|----------|----------|
