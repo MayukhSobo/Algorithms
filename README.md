@@ -1,21 +1,16 @@
 # LeetCoder
-DS and Algorithms of LeetCoder
+DSA and Algorithm Questions
+
 - [Company Tags](#company-tags)
 - [Popular Sheets](#popular-sheets)
-  - [Adding toc to all files in a directory and sub directories](#adding-toc-to-all-files-in-a-directory-and-sub-directories)
-  - [Update existing doctoc TOCs effortlessly](#update-existing-doctoc-tocs-effortlessly)
-  - [Adding toc to individual files](#adding-toc-to-individual-files)
-    - [Examples](#examples)
-  - [Using doctoc to generate links compatible with other sites](#using-doctoc-to-generate-links-compatible-with-other-sites)
-    - [Example](#example)
-  - [Specifying location of toc](#specifying-location-of-toc)
-  - [Specifying a custom TOC title](#specifying-a-custom-toc-title)
-  - [Specifying a maximum heading level for TOC entries](#specifying-a-maximum-heading-level-for-toc-entries)
-  - [Printing to stdout](#printing-to-stdout)
-  - [Usage as a `git` hook](#usage-as-a-git-hook)
+  - [Striver SDE Sheet](#striver-sde-sheet)
+  - [Love Babbar SDE Sheet](#love-babbar-sde-sheet)
 
 
 ## Company Tags
+
+All the Leetcode questions tagged by company. This service you get only in paid leetcode
+
 - [Microsoft Questions](./company-tags/microsoft-questions.md)
 - [Adobe Questions](./company-tags/adobe-questions.md)
 - [Paypal Questions](./company-tags/paypal-questions.md)
@@ -34,5 +29,8 @@ DS and Algorithms of LeetCoder
 
 ## Popular Sheets
 
-- [Striver SDE Sheet](#)
-- [Love Babbar Sheet](#)
+All the solutions for the popular SDE sheets that are solved by people
+
+### Striver SDE Sheet
+
+### Love Babbar Sheet
