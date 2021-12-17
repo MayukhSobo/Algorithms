@@ -2,6 +2,26 @@
 DSA and Algorithm Questions
 
 - [Company Tags](#company-tags)
+- [Topic Tags](#topic-tags)
+  - [Two pointers](#)
+    - [Simple](#)
+    - [Sorting/Hashmap](#)
+  - [Sliding Window](#)
+  - [Prefix Sum](#)
+  - [Sorting](#)
+  - [Stacks and Queues](#)
+  - [Hashmaps](#)
+  - [Greedy](#)
+    - [Simple](#)
+    - [Complex](#)
+  - [Linked List](#)
+  - [Trees](#)
+  - [Trie](#)
+  - [Backtracking](#)
+  - [Dynamic Programming](#)
+    - [1D DP](#)
+    - [2D DP](#)
+    - [Digit DP](#)
 - [Popular Sheets](#popular-sheets)
   - [Striver SDE Sheet](#striver-sde-sheet)
   - [Love Babbar SDE Sheet](#love-babbar-sde-sheet)
@@ -29,6 +49,9 @@ All the Leetcode questions tagged by company. This service you get only in paid 
 - [Uber Questions](./company-tags/uber-questions.md)
 - [Walmart Questions](./company-tags/walmart-labs-questions.md)
 - [Nutanix Questions](./company-tags/nutanix-questions.md)
+
+
+## Topic Tags
 
 ## Popular Sheets
 
