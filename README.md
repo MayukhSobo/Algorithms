@@ -1,14 +1,13 @@
-# LeetCoder
+# Algorithms
 DSA and Algorithm Questions
 
 - [Company Tags](#company-tags)
 - [Popular Sheets](#popular-sheets)
   - [Striver SDE Sheet](#striver-sde-sheet)
   - [Love Babbar SDE Sheet](#love-babbar-sde-sheet)
-- [Codeforces](#codeforces)
-- [AtCoder](#atcoder)
-- [InterviewBit](#InterviewBit)
-- [Others](#others)
+- [AlgoExpert](#algo-expert)
+- [CSES.fi](#cses)
+- [Competetive Coding](#competetive-coding)
 
 
 ## Company Tags
@@ -39,10 +38,8 @@ All the solutions for the popular SDE sheets that are solved by people
 
 ### Love Babbar Sheet
 
-## Codeforces
+## Algo Expert
 
-## AtCoder
+## CSES
 
-## InterviewBit
-
-## Others
+## Competetive Coding
