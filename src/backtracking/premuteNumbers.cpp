@@ -5,7 +5,7 @@
 #include <climits>
 #include <algorithm>
 using namespace std;
-
+// [1,2,3], [2,1,3], [3,2,1], [1,3,2]
 vector<vector<int>> result;
 vector<int> current;
 unordered_map<int, bool> um;
@@ -30,3 +30,6 @@ vector<vector<int>> permute(vector<int>& nums) {
     _premute(nums, 0);
     return result;
 }
+// 123 (i=0 begin=0)
+// 123
+// 123 (i=0 begin=1)
